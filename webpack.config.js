@@ -27,16 +27,23 @@ module.exports = {
   mode,
   target,
   plugins,
-  entry: './src/index.js',  //точка входа
+  entry: {
+    app: [
+      'react-app-polyfill/stable',
+      './src/index.js',
+    ],
+  },
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),  //итоговый бандл
     assetModuleFilename: 'assets/[hash][ext][query]', //складываем ассеты в dist/assets
     clean: true,  //очистка dist перед обновлением бандла
+    publicPath: '/',
   },
 
   devServer: {
     hot: true,  //автоперезагрузка страницы при изменениях
+    historyApiFallback: true,
   },
 
   module: {
