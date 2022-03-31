@@ -1,42 +1,73 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { useParams } from 'react-router-dom';
+import { Button, ButtonGroup } from 'react-bootstrap';
+import styled from 'styled-components';
 import { fetchMagazineNewNumber, selectors as newNumberSelectors } from '../../slices/newNumberSlice';
 import routes from '../../routes.js';
 import { fetchMagazineNumberById, selectors as magazineSelectors } from '../../slices/magazineSlice';
+import { LanguageContext } from '../../context/LanguageContext.jsx';
 
-export const Article = ({ article }) => (
-  <div>
-    <h5 dangerouslySetInnerHTML={{ __html: `${article.header_rus}` }} />
-    <p>{article.body_rus}</p>
-    <p>
-      Количество скачиваний:
-      {' '}
-      {article.downloads}
-    </p>
-    <a href={routes.downloadArticlePath(article.link)}>скачать</a>
-  </div>
-);
+const StyledButton = styled(Button)`
+  background-color: rgb(${(props) => props.theme.primaryColor}); 
+  border-color: rgb(${(props) => props.theme.primaryColor}); 
+  &:hover {
+    color: rgb(${(props) => props.theme.primaryColor});
+    background-color: rgba(${(props) => props.theme.primaryColor}, 0.2);
+    border-color: rgb(${(props) => props.theme.primaryColor});
+  }
+  &:active, :focus {
+    color: white;
+    background-color: rgb(${(props) => props.theme.primaryColor});
+    box-shadow: none;
+  }
+`;
 
-const ScienceSection = ({ section }) => (
-  <div>
-    <h4>{section.name_rus}</h4>
-    {
-        section.article.map((article) => <Article key={_.uniqueId()} article={article} />)
-      }
-  </div>
-);
+export const Article = ({ article }) => {
+  const { lang } = useContext(LanguageContext);
+
+  return (
+    <div className="article mb-4">
+      <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article[`header_${lang}`]}` }} />
+      <p className="article_body">{article[`body_${lang}`]}</p>
+      <ButtonGroup className="article_buttons">
+        <StyledButton className="button_download" href={routes.downloadArticlePath(article.link)}>Скачать PDF</StyledButton>
+        <Button className="button_info" variant="outline-secondary" disabled={true}>
+          Количество скачиваний:
+          {' '}
+          {article.downloads}
+        </Button>
+      </ButtonGroup>
+    </div>
+  );
+};
+
+const ScienceSection = ({ section }) => {
+  const { lang } = useContext(LanguageContext);
+
+  return (
+    <div className="magazine-page_section">
+      <h4 className="section_title bg-light p-3 mb-4">{section[`name_${lang}`]}</h4>
+      <div className="section_articles">
+        {
+          section.article.map((article) => <Article key={_.uniqueId()} article={article} />)
+        }
+      </div>
+    </div>
+  );
+}
 
 const MagazinePage = () => {
   const dispatch = useDispatch();
   const { numberId } = useParams();
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    numberId === 'new-number'
-      ? dispatch(fetchMagazineNewNumber())
-      : dispatch(fetchMagazineNumberById(numberId));
+    if (numberId === 'new-number') {
+      dispatch(fetchMagazineNewNumber());
+    } else {
+      dispatch(fetchMagazineNumberById(numberId));
+    }
   });
 
   const magazineData = numberId === 'new-number'
@@ -44,12 +75,16 @@ const MagazinePage = () => {
     : useSelector((state) => magazineSelectors.selectById(state, numberId));
 
   return (
-    <>
-      <h2>{magazineData?.description}</h2>
-      {
-        magazineData?.sections.map((section) => <ScienceSection key={_.uniqueId()} section={section} />)
-      }
-    </>
+    <div className="magazine-page">
+      <h2 className="magazine-page_title">{magazineData?.description}</h2>
+      <hr className="my-4" />
+      <div className="magazine-page_sections">
+        {
+          magazineData?.sections.map((section) => (
+            <ScienceSection key={_.uniqueId()} section={section} />))
+        }
+      </div>
+    </div>
   );
 };
 

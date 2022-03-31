@@ -7,6 +7,7 @@ import ru from './locales/ru';
 import App from './components/App.jsx';
 import DomainProvider from './context/DomainContext.jsx';
 import store from './slices/index.js';
+import LanguageProvider from './context/LanguageContext.jsx';
 
 export default async () => {
   const i18nextInstance = i18next.createInstance();
@@ -21,9 +22,11 @@ export default async () => {
     <Provider store={store}>
       <DomainProvider>
         <I18nextProvider i18n={i18nextInstance}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <LanguageProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </LanguageProvider>
         </I18nextProvider>
       </DomainProvider>
     </Provider>

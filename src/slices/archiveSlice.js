@@ -8,8 +8,8 @@ const initialState = archiveAdapter.getInitialState();
 
 export const fetchArchiveNumbers = createAsyncThunk(
   'archive/fetchArchiveNumbers',
-  async () => {
-    const response = await axios.get(routes.archivePath());
+  async (pageNumber) => {
+    const response = await axios.get(routes.archivePath(pageNumber));
     return {
       number: response.data.number,
       pages: response.data.pages,
@@ -29,7 +29,7 @@ const archiveSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchArchiveNumbers.fulfilled, (state, action) => {
-        archiveAdapter.addMany(state, action.payload.number);
+        archiveAdapter.setAll(state, action.payload.number);
         state.pages = action.payload.pages;
         state.currentPage = action.payload.currentPage;
       });

@@ -5,16 +5,19 @@ import { Article } from './MagazinePage.jsx';
 
 const SearchPage = () => {
   const articles = useSelector(searchSelectors.selectAll);
-  console.log(articles);
+
   return (
-    <>
-      <h4>Результаты поиска:</h4>
-      {
-        articles.length > 0
-          ? articles.map((article) => <Article key={article.id} article={article} />)
-          : <p>Данные отсутствуют или не загружены. Вернуться на ГЛАВНУЮ</p>
-      }
-    </>
+    <div className="search-page">
+      <h2 className="search-page_title">Результаты поиска:</h2>
+      <hr className="my-4" />
+      <div className="search-page_results mt-4">
+        {
+          articles.length > 0
+            ? articles.map((article) => <Article key={article.id} article={article} />)
+            : <p>Данные отсутствуют или не загружены.</p>
+        }
+      </div>
+    </div>
   );
 };
 export default SearchPage;

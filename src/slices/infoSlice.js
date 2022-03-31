@@ -13,7 +13,11 @@ const initialState = {
 export const fetchTotalStatistic = createAsyncThunk(
   'pages/fetchTotalStatistic',
   async () => {
-    const response = await axios.get(routes.totalStatisticPath());
+    const response = await axios.get(routes.totalStatisticPath(), {
+      headers: {
+
+      },
+    });
     const { all_articles, all_numbers, average_articles } = response.data;
     return {
       allArticles: all_articles,
