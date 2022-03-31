@@ -12,6 +12,7 @@ export default {
   archivePaginationPath: (pageNumber) => ['/magazine/archive', pageNumber].join('/'),
   archiveNumberImgPath: (link) => [host, link].join(''),
   magazineNumberByIdPath: (id) => [host, prefix, `number/?id=${id}`].join('/'),
+  abstractByIdPath: (id) => [host, prefix, `abstract/?id=${id}`].join('/'),
   mostViewedArticlesPath: () => [host, prefix, 'most_viewed_articles/'].join('/'),
   searchPath: () => [host, prefix, 'search/'].join('/'),
   certificatesPath: () => [host, prefix, 'register/'].join('/'),

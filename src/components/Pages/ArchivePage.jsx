@@ -56,17 +56,14 @@ const ArchivePage = () => {
     );
   }
 
-  // <StyledButton key={number} active={number === currentPage} href={`${routes.archivePaginationPath(number)}`}>
-  //   {number}
-  // </StyledButton>,
-
   return (
     <div className="archive-page">
       <h2 className="archive-page_title">Архив номеров</h2>
       <hr className="my-4" />
       <Row className="archive-page_magazines mb-4">
         {
-          archiveNumbers?.map((number) => (
+          archiveNumbers
+          && archiveNumbers.map((number) => (
             <Col
               key={_.uniqueId()}
               className="flex-column mb-4"
@@ -77,7 +74,7 @@ const ArchivePage = () => {
               xl={2}
             >
               <img className="magazine-img d-flex" src={routes.archiveNumberImgPath(number.img)} alt={number.description} />
-              <StyledLink className="magazine-link d-flex mt-2" to={`/magazine/${number.id}`}>{number.description}</StyledLink>
+              <StyledLink className="magazine-link d-flex mt-2" to={`/magazine/archive/number/${number.id}`}>{number.description}</StyledLink>
             </Col>
           ))
         }

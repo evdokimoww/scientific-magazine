@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -12,11 +12,22 @@ import SearchPage from './Pages/SearchPage.jsx';
 import CertificatesPage from './Pages/CertificatesPage.jsx';
 import { DomainContext } from '../context/DomainContext.jsx';
 import getTheme from '../themes.js';
+import AbstractPage from './Pages/AbstractPage.jsx';
+
+const Wrapper = ({ children }) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children;
+};
+
 
 const App = () => {
   const { domain } = useContext(DomainContext);
   return (
     <ThemeProvider theme={getTheme(domain)}>
+      <Wrapper>
       <Header />
       <Container>
         <Row>
@@ -25,8 +36,10 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Navigate to="pages/index" />} />
               <Route path="/pages/:pageLink" element={<SimplePage />} />
-              <Route path="/magazine/:numberId" element={<MagazinePage />} />
               <Route path="/magazine/archive/:pageNumber" element={<ArchivePage />} />
+              <Route path="/magazine/:numberId" element={<MagazinePage />} />
+              <Route path="/magazine/archive/number/:numberId" element={<MagazinePage />} />
+              <Route path="/magazine/:numberId/abstract" element={<AbstractPage />} />
               <Route path="/search-results" element={<SearchPage />} />
               <Route path="/certificates" element={<CertificatesPage />} />
             </Routes>
@@ -34,6 +47,7 @@ const App = () => {
         </Row>
       </Container>
       <Footer />
+      </Wrapper>
     </ThemeProvider>
   );
 };

@@ -7,6 +7,7 @@ import magazineSlice from './magazineSlice.js';
 import mostViewedArticlesSlice from './mostViewedArticlesSlice';
 import searchSlice from './searchSlice';
 import certificatesSlice from './certificatesSlice';
+import abstractSlice from './abstractSlice';
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
     newNumber: newNumberSlice,
     archive: archiveSlice,
     magazine: magazineSlice,
+    abstract: abstractSlice,
     mostViewedArticles: mostViewedArticlesSlice,
     search: searchSlice,
     certificates: certificatesSlice,

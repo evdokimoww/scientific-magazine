@@ -1,6 +1,6 @@
 import { Col, Nav } from 'react-bootstrap';
 import React, { useContext, useEffect } from 'react';
-import { Link, useResolvedPath, useMatch, useParams } from 'react-router-dom';
+import { Link, useResolvedPath, useMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImEye } from 'react-icons/im';
 import styled from 'styled-components';

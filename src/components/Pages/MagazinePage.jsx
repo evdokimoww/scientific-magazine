@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import styled from 'styled-components';
 import { fetchMagazineNewNumber, selectors as newNumberSelectors } from '../../slices/newNumberSlice';
 import routes from '../../routes.js';
 import { fetchMagazineNumberById, selectors as magazineSelectors } from '../../slices/magazineSlice';
 import { LanguageContext } from '../../context/LanguageContext.jsx';
+import { fetchAbstractById } from '../../slices/abstractSlice';
 
 const StyledButton = styled(Button)`
   background-color: rgb(${(props) => props.theme.primaryColor}); 
@@ -56,7 +57,7 @@ const ScienceSection = ({ section }) => {
       </div>
     </div>
   );
-}
+};
 
 const MagazinePage = () => {
   const dispatch = useDispatch();
@@ -80,9 +81,13 @@ const MagazinePage = () => {
       <hr className="my-4" />
       <div className="magazine-page_sections">
         {
-          magazineData?.sections.map((section) => (
+          magazineData
+          && magazineData.sections.map((section) => (
             <ScienceSection key={_.uniqueId()} section={section} />))
         }
+      </div>
+      <div className="magazine-page_abstract">
+        <Link to={`/magazine/${magazineData?.id}/abstract`}>ABSTRACT</Link>
       </div>
     </div>
   );

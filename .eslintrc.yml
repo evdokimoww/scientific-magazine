@@ -22,6 +22,7 @@ rules:
   functional/no-throw-statement: 0
   react/function-component-definition: 0
   react/jsx-no-constructed-context-values: 0
+  camelcase: 0
 settings:
   import/resolver:
     - node
