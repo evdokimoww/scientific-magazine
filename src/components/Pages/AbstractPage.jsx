@@ -14,7 +14,7 @@ const Article = ({ article }) => (
 );
 
 const ScienceSection = ({ section }) => (
-  <div className="article-page_section">
+  <div className="abstract-page_section">
     <h4 className="section_title mb-4">{section.name_en}</h4>
     <hr className="my-4" />
     <div className="section_articles">
@@ -35,12 +35,11 @@ const AbstractPage = () => {
 
   const abstractData = useSelector((state) => abstractSelectors.selectById(state, numberId));
 
-  console.log(abstractData);
   return (
     <div className="abstract-page">
-      <h2 className="magazine-page_title">Abstract</h2>
+      <h2 className="abstract-page_title">Abstract</h2>
       <hr className="my-4" />
-      <div className="magazine-page_sections">
+      <div className="abstract-page_sections">
         {
           abstractData
           && abstractData.sections.map((section) => (

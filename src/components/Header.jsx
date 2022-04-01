@@ -1,7 +1,7 @@
 import {
   Button, ButtonGroup, Container, Form, Navbar,
 } from 'react-bootstrap';
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -17,16 +17,12 @@ const StyledNavbar = styled(Navbar)`
 
 const StyledNavbarBrand = styled(Navbar.Brand)`
   color: ${(props) => props.theme.headerTitleColor} !important;
-  font-size: 2rem;
+  font-size: 1.8em;
   font-weight: 600;
 `;
 
 const StyledNavbarBrandSubtitle = styled.span`
   color: ${(props) => props.theme.headerSubtitleColor} !important;
-`;
-
-const StyledFormControl = styled(Form.Control)`
-  width: 260px;
 `;
 
 const StyledSubmitButton = styled(Button)`
@@ -77,30 +73,33 @@ const Header = () => {
 
   return (
     <StyledNavbar sticky="top" expand="lg" className="header py-4 border-bottom">
-      <Container fluid className="d-flex justify-content-between">
-        <div className="d-flex flex-column header_title">
-          <StyledNavbarBrand className="title d-flex" href="/">{t('title')}</StyledNavbarBrand>
-          <StyledNavbarBrandSubtitle className="subtitle d-flex text-muted small">{t('subtitle')}</StyledNavbarBrandSubtitle>
+      <Container fluid className="d-flex flex-row justify-content-between">
+        <div className="header_left d-flex flex-column w-75">
+          <StyledNavbarBrand className="h1 header_title d-flex" href="/">{t('title')}</StyledNavbarBrand>
+          <StyledNavbarBrandSubtitle className="header_subtitle d-flex text-muted small">{t('subtitle')}</StyledNavbarBrandSubtitle>
         </div>
-        <div className="d-flex flex-column">
-          <ButtonGroup size="sm" className="mb-2 w-25" aria-label="Language Switcher">
-            <StyledLanguageButton className={lang === 'rus' ? 'active' : ''} onClick={setRu}>Рус</StyledLanguageButton>
-            <StyledLanguageButton className={lang === 'en' ? 'active' : ''} onClick={setEn}>Eng</StyledLanguageButton>
-          </ButtonGroup>
-          <Form className="search-form d-flex" onSubmit={formik.handleSubmit}>
-            <StyledFormControl
-              type="search"
-              name="search"
-              placeholder="Введите запрос..."
-              className="search-form_input me-2"
-              aria-label="Search"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.search}
-            />
-            <StyledSubmitButton className="search-form_button" variant="outline" type="submit" disabled={!formik.dirty}>Поиск</StyledSubmitButton>
-          </Form>
-        </div>
+        <Navbar.Toggle aria-controls="nav" className="bg-white" />
+        <Navbar.Collapse id="nav" className="mt-4">
+          <div className="header_right d-flex flex-column w-100">
+            <ButtonGroup size="sm" className="header_language-switcher mb-2 w-25" aria-label="Language Switcher">
+              <StyledLanguageButton className={lang === 'rus' ? 'active' : ''} onClick={setRu}>Рус</StyledLanguageButton>
+              <StyledLanguageButton className={lang === 'en' ? 'active' : ''} onClick={setEn}>Eng</StyledLanguageButton>
+            </ButtonGroup>
+            <Form className="header_search-form d-flex" onSubmit={formik.handleSubmit}>
+              <Form.Control
+                type="search"
+                name="search"
+                placeholder="Введите запрос..."
+                className="search-form_input me-2"
+                aria-label="Search"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.search}
+              />
+              <StyledSubmitButton className="search-form_button" variant="outline" type="submit" disabled={!formik.dirty}>Поиск</StyledSubmitButton>
+            </Form>
+          </div>
+        </Navbar.Collapse>
       </Container>
     </StyledNavbar>
   );

@@ -20,10 +20,11 @@ const CertificatesPage = () => {
   const certificates = useSelector(certificatesSelector.selectAll);
 
   return (
-    <Row xs={1} sm={2} md={3}>
+    <Row xs={1} sm={2} md={3} className="certificate-page">
       {
-        certificates?.map((cert) => (
-          <Col key={cert.id}>
+        certificates
+        && certificates.map((cert) => (
+          <Col key={cert.id} className="certificate-page_item">
             <Card>
               <Card.Img
                 onClick={() => {

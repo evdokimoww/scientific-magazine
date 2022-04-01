@@ -18,9 +18,9 @@ const Footer = () => {
   const { allArticles, allNumbers, averageArticles } = useSelector((state) => state.info);
 
   return (
-    <StyledFooter fluid className="footer border-top bg-light py-2">
+    <StyledFooter fluid className="footer border-top bg-light py-2 flex-md-row flex-column">
       <Row>
-        <Col sm={12} md={6} className="d-flex flex-column">
+        <Col sm={12} md={6} className="d-flex flex-column text-md-start text-center my-2 my-md-0">
           <span className="mb-1">
             Количество выпусков:
             {' '}
@@ -37,8 +37,8 @@ const Footer = () => {
             <b>{averageArticles}</b>
           </span>
         </Col>
-        <Col sm={12} md={6} className="d-flex flex-column justify-content-end">
-          <span className="mb-1 text-end">Разработано в SUPPORT HUB. Курский государственный университет.</span>
+        <Col sm={12} md={6} className="d-flex flex-column justify-content-end my-2 my-md-0">
+          <span className="mb-1 text-md-end text-center">Разработано в SUPPORT HUB. Курский государственный университет.</span>
         </Col>
       </Row>
     </StyledFooter>

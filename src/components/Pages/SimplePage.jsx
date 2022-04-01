@@ -21,7 +21,7 @@ const SimplePage = () => {
         page !== undefined
           ? (
             <>
-              <h2>{page?.name}</h2>
+              <h2 className="text-page_title">{page?.name}</h2>
               <hr className="my-4" />
               <div className="text-page_content" dangerouslySetInnerHTML={{ __html: `${ page?.[`content_${lang}`] }` }} />
             </>
