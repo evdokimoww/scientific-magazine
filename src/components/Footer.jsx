@@ -1,8 +1,8 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTotalStatistic } from '../slices/infoSlice';
 import styled from 'styled-components';
+import { fetchTotalStatistic } from '../slices/infoSlice';
 
 const StyledFooter = styled(Container)`
   font-size: 0.8rem;

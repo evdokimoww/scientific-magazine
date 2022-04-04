@@ -14,7 +14,7 @@ const SearchPage = () => {
         {
           articles.length > 0
             ? articles.map((article) => <Article key={article.id} article={article} />)
-            : <p>Данные отсутствуют или не загружены.</p>
+            : <p>Поиск не дал результатов</p>
         }
       </div>
     </div>

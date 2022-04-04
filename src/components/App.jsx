@@ -1,12 +1,11 @@
 import React, { useContext, useLayoutEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import {
-  Route, Routes, Navigate, useLocation,
+  Navigate, Route, Routes, useLocation,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import SimplePage from './Pages/SimplePage.jsx';
 import Sidebar from './Sidebar.jsx';
 import MagazinePage from './Pages/MagazinePage.jsx';
 import ArchivePage from './Pages/ArchivePage.jsx';
@@ -15,6 +14,8 @@ import CertificatesPage from './Pages/CertificatesPage.jsx';
 import { DomainContext } from '../context/DomainContext.jsx';
 import getTheme from '../themes.js';
 import AbstractPage from './Pages/AbstractPage.jsx';
+import SimplePage from './Pages/SimplePage.jsx';
+import NoMatch from './Pages/NoMatch.jsx';
 
 const ScrollToTopWrapper = ({ children }) => {
   const location = useLocation();
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path="/magazine/:numberId/abstract" element={<AbstractPage />} />
                 <Route path="/search-results" element={<SearchPage />} />
                 <Route path="/certificates" element={<CertificatesPage />} />
+                <Route path="*" element={<NoMatch />} />
               </Routes>
             </Col>
           </Row>

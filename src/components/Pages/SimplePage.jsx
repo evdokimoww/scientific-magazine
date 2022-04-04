@@ -14,19 +14,17 @@ const SimplePage = () => {
   });
 
   const page = useSelector((state) => pagesSelectors.selectById(state, pageLink));
-
   return (
     <div className="text-page">
       {
-        page !== undefined
-          ? (
+        page
+          && (
             <>
-              <h2 className="text-page_title">{page?.name}</h2>
+              <h2 className="text-page_title">{page.name}</h2>
               <hr className="my-4" />
-              <div className="text-page_content" dangerouslySetInnerHTML={{ __html: `${ page?.[`content_${lang}`] }` }} />
+              <div className="text-page_content" dangerouslySetInnerHTML={{ __html: `${page[`content_${lang}`]}` }} />
             </>
           )
-          : <p>Данные отсутствуют или не загружены</p>
       }
     </div>
   );

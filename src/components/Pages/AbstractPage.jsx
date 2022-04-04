@@ -37,15 +37,21 @@ const AbstractPage = () => {
 
   return (
     <div className="abstract-page">
-      <h2 className="abstract-page_title">Abstract</h2>
-      <hr className="my-4" />
-      <div className="abstract-page_sections">
-        {
-          abstractData
-          && abstractData.sections.map((section) => (
-            <ScienceSection key={_.uniqueId()} section={section} />))
-        }
-      </div>
+      {
+        abstractData
+          && (
+          <>
+            <h2 className="abstract-page_title">Abstract</h2>
+            <hr className="my-4" />
+            <div className="abstract-page_sections">
+              {
+                abstractData.sections.map((section) => (
+                  <ScienceSection key={_.uniqueId()} section={section} />))
+              }
+            </div>
+          </>
+          )
+      }
     </div>
   );
 };

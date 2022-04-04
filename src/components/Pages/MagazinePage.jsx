@@ -8,7 +8,6 @@ import { fetchMagazineNewNumber, selectors as newNumberSelectors } from '../../s
 import routes from '../../routes.js';
 import { fetchMagazineNumberById, selectors as magazineSelectors } from '../../slices/magazineSlice';
 import { LanguageContext } from '../../context/LanguageContext.jsx';
-import { fetchAbstractById } from '../../slices/abstractSlice';
 
 const StyledButton = styled(Button)`
   background-color: rgb(${(props) => props.theme.primaryColor}); 
@@ -22,6 +21,15 @@ const StyledButton = styled(Button)`
     color: white;
     background-color: rgb(${(props) => props.theme.primaryColor});
     box-shadow: none;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: rgb(${(props) => props.theme.primaryColor});
+  font-weight: bold;
+  
+  &:hover, :active {
+    color: rgba(${(props) => props.theme.primaryColor}, 0.8);
   }
 `;
 
@@ -82,12 +90,18 @@ const MagazinePage = () => {
       <div className="magazine-page_sections">
         {
           magazineData
-          && magazineData.sections.map((section) => (
-            <ScienceSection key={_.uniqueId()} section={section} />))
+          && (
+            <>
+              {
+                magazineData.sections.map((section) => (
+                  <ScienceSection key={_.uniqueId()} section={section} />))
+              }
+              <div className="magazine-page_abstract">
+                <StyledLink to={`/magazine/${magazineData?.id}/abstract`}>ABSTRACT</StyledLink>
+              </div>
+            </>
+          )
         }
-      </div>
-      <div className="magazine-page_abstract">
-        <Link to={`/magazine/${magazineData?.id}/abstract`}>ABSTRACT</Link>
       </div>
     </div>
   );

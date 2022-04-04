@@ -44,7 +44,8 @@ const CertificatesPage = () => {
           </Col>
         ))
       }
-      {lightboxOpen && (
+      {
+        lightboxOpen && (
         <Lightbox
           mainSrc={imageSrc}
           onAfterOpen={() => {
@@ -55,7 +56,8 @@ const CertificatesPage = () => {
             setLightboxOpen(false);
           }}
         />
-      )}
+        )
+      }
     </Row>
   );
 };
