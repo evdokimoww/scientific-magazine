@@ -1,7 +1,7 @@
 import {
   Button, ButtonGroup, Container, Form, Navbar,
 } from 'react-bootstrap';
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -19,10 +19,18 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
   color: ${(props) => props.theme.headerTitleColor} !important;
   font-size: 1.8em;
   font-weight: 600;
+  white-space: break-spaces;
+
+  @media only screen and (max-width: 425px) {
+    font-size: 1.2em;
+  }
 `;
 
 const StyledNavbarBrandSubtitle = styled.span`
   color: ${(props) => props.theme.headerSubtitleColor} !important;
+  @media only screen and (max-width: 425px) {
+    font-size: 0.7em;
+  }
 `;
 
 const StyledSubmitButton = styled(Button)`

@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const abstractAdapter = createEntityAdapter();
 
-const initialState = abstractAdapter.getInitialState();
+const initialState = abstractAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchAbstractById = createAsyncThunk(
   'abstract/fetchAbstractById',
@@ -24,8 +24,18 @@ const abstractSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchAbstractById.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchAbstractById.fulfilled, (state, action) => {
         abstractAdapter.addOne(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchAbstractById.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

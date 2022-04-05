@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const newNumberAdapter = createEntityAdapter();
 
-const initialState = newNumberAdapter.getInitialState();
+const initialState = newNumberAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchMagazineNewNumber = createAsyncThunk(
   'magazines/fetchMagazineNewNumber',
@@ -25,8 +25,18 @@ const newNumberSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchMagazineNewNumber.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchMagazineNewNumber.fulfilled, (state, action) => {
         newNumberAdapter.addOne(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchMagazineNewNumber.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

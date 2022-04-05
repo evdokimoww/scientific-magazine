@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const mostViewedArticlesAdapter = createEntityAdapter();
 
-const initialState = mostViewedArticlesAdapter.getInitialState();
+const initialState = mostViewedArticlesAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchMostViewedArticles = createAsyncThunk(
   'mostViewedArticles/fetchMostViewedArticles',
@@ -20,8 +20,18 @@ const mostViewedArticlesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchMostViewedArticles.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchMostViewedArticles.fulfilled, (state, action) => {
         mostViewedArticlesAdapter.addMany(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchMostViewedArticles.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

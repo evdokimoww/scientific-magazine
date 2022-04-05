@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const pagesAdapter = createEntityAdapter();
 
-const initialState = pagesAdapter.getInitialState();
+const initialState = pagesAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchPageByLink = createAsyncThunk(
   'pages/fetchPageByName',
@@ -35,8 +35,18 @@ const pagesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchPageByLink.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchPageByLink.fulfilled, (state, action) => {
         pagesAdapter.addOne(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchPageByLink.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

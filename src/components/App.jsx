@@ -1,7 +1,7 @@
-import React, { useContext, useLayoutEffect } from 'react';
+import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import {
-  Navigate, Route, Routes, useLocation,
+  Navigate, Route, Routes,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Header from './Header.jsx';
@@ -16,17 +16,11 @@ import getTheme from '../themes.js';
 import AbstractPage from './Pages/AbstractPage.jsx';
 import SimplePage from './Pages/SimplePage.jsx';
 import NoMatch from './Pages/NoMatch.jsx';
-
-const ScrollToTopWrapper = ({ children }) => {
-  const location = useLocation();
-  useLayoutEffect(() => {
-    document.documentElement.scrollTo(0, 0);
-  }, [location.pathname]);
-  return children;
-};
+import ScrollToTopWrapper from './ScrollToTop.jsx';
 
 const App = () => {
   const { domain } = useContext(DomainContext);
+
   return (
     <ThemeProvider theme={getTheme(domain)}>
       <ScrollToTopWrapper>

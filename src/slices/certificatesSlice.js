@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const certificatesAdapter = createEntityAdapter();
 
-const initialState = certificatesAdapter.getInitialState();
+const initialState = certificatesAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchCertificates = createAsyncThunk(
   'certificates/fetchCertificates',
@@ -20,8 +20,18 @@ const certificatesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchCertificates.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchCertificates.fulfilled, (state, action) => {
         certificatesAdapter.addMany(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchCertificates.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

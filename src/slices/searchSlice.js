@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const searchAdapter = createEntityAdapter();
 
-const initialState = searchAdapter.getInitialState();
+const initialState = searchAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchSearchArticles = createAsyncThunk(
   'archive/fetchSearchArticles',
@@ -21,8 +21,18 @@ const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchSearchArticles.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchSearchArticles.fulfilled, (state, action) => {
         searchAdapter.setAll(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchSearchArticles.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

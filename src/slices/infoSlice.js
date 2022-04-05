@@ -8,6 +8,8 @@ const initialState = {
   allArticles: '-',
   allNumbers: '-',
   averageArticles: '-',
+  loading: 'idle',
+  error: null,
 };
 
 export const fetchTotalStatistic = createAsyncThunk(
@@ -33,7 +35,20 @@ const infoSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTotalStatistic.fulfilled, (state, action) => ({ ...state, ...action.payload }));
+      .addCase(fetchTotalStatistic.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchTotalStatistic.fulfilled, (state, action) => ({
+        ...state,
+        ...action.payload,
+        loading: 'idle',
+        error: null,
+      }))
+      .addCase(fetchTotalStatistic.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
+      });
   },
 });
 

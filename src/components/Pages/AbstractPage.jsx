@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { useParams } from 'react-router-dom';
 import { fetchAbstractById, selectors as abstractSelectors } from '../../slices/abstractSlice';
+import SiteTitle from '../SiteTitle.jsx';
 
 const Article = ({ article }) => (
   <div className="article mb-4">
@@ -37,6 +38,7 @@ const AbstractPage = () => {
 
   return (
     <div className="abstract-page">
+      <SiteTitle pageName="Abstract" />
       {
         abstractData
           && (

@@ -4,7 +4,7 @@ import routes from '../routes.js';
 
 const magazineAdapter = createEntityAdapter();
 
-const initialState = magazineAdapter.getInitialState();
+const initialState = magazineAdapter.getInitialState({ loading: 'idle', error: null });
 
 export const fetchMagazineNumberById = createAsyncThunk(
   'magazines/fetchMagazineNumberById',
@@ -25,8 +25,18 @@ const magazineSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchMagazineNumberById.pending, (state) => {
+        state.loading = 'loading';
+        state.error = null;
+      })
       .addCase(fetchMagazineNumberById.fulfilled, (state, action) => {
         magazineAdapter.addOne(state, action.payload);
+        state.loading = 'idle';
+        state.error = null;
+      })
+      .addCase(fetchMagazineNumberById.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error;
       });
   },
 });

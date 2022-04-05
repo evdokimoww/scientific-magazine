@@ -44,6 +44,12 @@ const StyledMenuButton = styled(Button)`
   }
 `;
 
+const StyledOffcanvas = styled(Offcanvas)`
+  @media only screen and (max-width: 425px) {
+    width: 300px;
+  }
+`;
+
 const CustomLink = ({ children, to }) => {
   const resolved = useResolvedPath(to);
   const path = resolved.pathname.split('/').slice(0, 3).concat('*').join(('/'));
@@ -129,7 +135,7 @@ const Sidebar = () => {
           Главное меню
         </StyledMenuButton>
 
-        <Offcanvas show={show} onHide={() => setShow(false)}>
+        <StyledOffcanvas show={show} onHide={() => setShow(false)}>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Меню</Offcanvas.Title>
           </Offcanvas.Header>
@@ -144,7 +150,7 @@ const Sidebar = () => {
 
             <MostViewedArticles />
           </Offcanvas.Body>
-        </Offcanvas>
+        </StyledOffcanvas>
       </Col>
     </>
   );

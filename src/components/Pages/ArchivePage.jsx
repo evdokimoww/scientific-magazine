@@ -6,6 +6,7 @@ import { Col, Pagination, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import { fetchArchiveNumbers, selectors as archiveSelectors } from '../../slices/archiveSlice.js';
 import routes from '../../routes';
+import SiteTitle from '../SiteTitle.jsx';
 
 const StyledLink = styled(Link)`
   color: rgb(${(props) => props.theme.primaryColor})
@@ -30,6 +31,11 @@ const StyledButton = styled.li`
     color: rgb(${(props) => props.theme.primaryColor});
     background-color: rgba(${(props) => props.theme.primaryColor}, 0.2);
   }
+`;
+
+const StyledImg = styled.img`
+  width: 125px;
+  height: 200px;
 `;
 
 const ArchivePage = () => {
@@ -58,6 +64,7 @@ const ArchivePage = () => {
 
   return (
     <div className="archive-page">
+      <SiteTitle pageName="Архив номеров" />
       <h2 className="archive-page_title">Архив номеров</h2>
       <hr className="my-4" />
       <Row className="archive-page_magazines mb-4">
@@ -73,7 +80,7 @@ const ArchivePage = () => {
               lg={3}
               xl={2}
             >
-              <img className="magazine-img d-flex" src={routes.archiveNumberImgPath(number.img)} alt={number.description} />
+              <StyledImg className="magazine-img d-flex" src={routes.archiveNumberImgPath(number.img)} alt={number.description} />
               <StyledLink className="magazine-link d-flex mt-2" to={`/magazine/archive/number/${number.id}`}>{number.description}</StyledLink>
             </Col>
           ))

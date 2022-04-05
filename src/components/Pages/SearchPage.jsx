@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectors as searchSelectors } from '../../slices/searchSlice.js';
-import { Article } from './MagazinePage.jsx';
+import SiteTitle from '../SiteTitle.jsx';
+import Article from '../Article.jsx';
 
 const SearchPage = () => {
   const articles = useSelector(searchSelectors.selectAll);
 
   return (
     <div className="search-page">
+      <SiteTitle pageName="Результаты поиска" />
       <h2 className="search-page_title">Результаты поиска:</h2>
       <hr className="my-4" />
       <div className="search-page_results mt-4">

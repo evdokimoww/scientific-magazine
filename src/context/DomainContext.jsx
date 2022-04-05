@@ -5,13 +5,12 @@ export const DomainContext = createContext({});
 const DomainProvider = ({ children }) => {
   const domain = window.location.hostname;
   const magazines = {
-    'localhost:8080': 'ScientificSearch',
-    'economprav.ru': 'EconomPrav',
-    'scientific-notes.ru': 'ScientificNotes',
-    'ipp.kursksu.ru': 'Ipp',
-    'tl-ic.kursksu.ru': 'TlIc',
-    'auditorium.kursksu.ru': 'Auditorium',
-    // 'scientific-search.kursksu.ru': 'ScientificSearch',
+    [process.env.REACT_APP_DOMAIN_SCIENTIFICSEARCH]: 'ScientificSearch',
+    [process.env.REACT_APP_DOMAIN_ECONOMPRAV]: 'EconomPrav',
+    [process.env.REACT_APP_DOMAIN_SCIENTIFICNOTES]: 'ScientificNotes',
+    [process.env.REACT_APP_DOMAIN_IPP]: 'Ipp',
+    [process.env.REACT_APP_DOMAIN_TLIC]: 'TlIc',
+    [process.env.REACT_APP_DOMAIN_AUDITORIUM]: 'Auditorium',
   };
 
   const value = {
