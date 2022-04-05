@@ -80,7 +80,7 @@ const Header = () => {
   });
 
   return (
-    <StyledNavbar sticky="top" expand="lg" className="header py-4 border-bottom">
+    <StyledNavbar expand="lg" className="header py-3 py-md-4 border-bottom sticky-md-top">
       <Container fluid className="d-flex flex-row justify-content-between">
         <div className="header_left d-flex flex-column w-75">
           <StyledNavbarBrand className="h1 header_title d-flex" href="/">{t('title')}</StyledNavbarBrand>

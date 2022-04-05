@@ -47,8 +47,8 @@ module.exports = {
     hot: true, // автоперезагрузка страницы при изменениях
     historyApiFallback: true,
     compress: true,
-    allowedHosts: ['scientific-notes.ru'],
-    port: 80,
+    // allowedHosts: ['scientific-notes.ru'],
+    // port: 80,
   },
 
   module: {
