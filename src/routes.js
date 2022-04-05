@@ -1,6 +1,6 @@
 // @ts-check
 
-const host = 'https://api-mag.kursksu.ru';
+const host = `${process.env.REACT_APP_API_HOST}`;
 const prefix = 'api/v1';
 
 export default {
