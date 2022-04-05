@@ -1,5 +1,5 @@
 {
-  "name": "react-webpack-boilerplate",
+  "name": "kursk-state-university-scientific-magazines",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -11,8 +11,12 @@
     "lint": "eslint src/**/*.js  src/**/*.jsx"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alexey Evdokimov",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evdokimoww/scientific-magazine"
+  },
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/plugin-proposal-export-default-from": "^7.16.7",

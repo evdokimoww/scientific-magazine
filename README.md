@@ -1,4 +1,10 @@
-My personal Webpack boilerplate with React, eslint
+#### Kursk State University Scientific Magazine App.
+
+ - React, Redux Toolkit
+ - React Bootstrap, Formik, i18next, Styled Components
+ - ESLint
+ - Webpack
+
 ____
 
 #### install deps
