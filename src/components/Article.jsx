@@ -24,8 +24,16 @@ const Article = ({ article }) => {
 
   return (
     <div className="article mb-4">
-      <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article[`header_${lang}`]}` }} />
-      <p className="article_body">{article[`body_${lang}`]}</p>
+      {
+        !!article[`header_${lang}`]
+          ? <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article[`header_${lang}`]}` }} />
+          : <h5 className="article_title">Unfortunately, the title of this article has not been translated.</h5>
+      }
+      {
+        !!article[`body_${lang}`]
+          ? <p className="article_body">{article[`body_${lang}`]}</p>
+          : <p className="article_body">Unfortunately, the body of this article has not been translated.</p>
+      }
       <ButtonGroup className="article_buttons">
         <StyledButton className="button_download" href={routes.downloadArticlePath(article.link)}>Скачать PDF</StyledButton>
         <Button className="button_info" variant="outline-secondary" disabled={true}>

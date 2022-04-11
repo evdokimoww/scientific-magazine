@@ -22,7 +22,9 @@ const ScienceSection = ({ section }) => {
   const { lang } = useContext(LanguageContext);
   return (
     <div className="magazine-page_section">
-      <h4 className="section_title bg-light p-3 mb-4">{section[`name_${lang}`]}</h4>
+      {
+        section[`name_${lang}`] && <h4 className="section_title bg-light p-3 mb-4">{section[`name_${lang}`]}</h4>
+      }
       <div className="section_articles">
         {
           section.article.map((article) => <Article key={_.uniqueId()} article={article} />)

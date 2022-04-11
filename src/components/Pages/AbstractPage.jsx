@@ -5,19 +5,32 @@ import { useParams } from 'react-router-dom';
 import { fetchAbstractById, selectors as abstractSelectors } from '../../slices/abstractSlice';
 import SiteTitle from '../SiteTitle.jsx';
 
-const Article = ({ article }) => (
-  <div className="article mb-4">
-    <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article.header_en}` }} />
-    <p className="article_body" dangerouslySetInnerHTML={{ __html: `${article.annotation}` }} />
-    <p className="article_body">{article.body_en}</p>
-    <hr className="my-4" />
-  </div>
-);
+const Article = ({ article }) => {
+  if (!article.header_en) {
+    return <div />;
+  }
+
+  return (
+    <div className="article mb-4">
+      <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article.header_en}` }} />
+      <p className="article_body" dangerouslySetInnerHTML={{ __html: `${article.annotation}` }} />
+      <p className="article_body">{article.body_en}</p>
+      <hr className="my-4" />
+    </div>
+  );
+};
 
 const ScienceSection = ({ section }) => (
   <div className="abstract-page_section">
-    <h4 className="section_title mb-4">{section.name_en}</h4>
-    <hr className="my-4" />
+    {
+      section.name_en
+       && (
+         <>
+           <h4 className="section_title mb-4">{section.name_en}</h4>
+           <hr className="my-4" />
+         </>
+       )
+    }
     <div className="section_articles">
       {
           section.article.map((article) => <Article key={_.uniqueId()} article={article} />)

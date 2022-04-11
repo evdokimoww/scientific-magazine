@@ -25,7 +25,11 @@ const SimplePage = () => {
               <SiteTitle pageName={page.name} />
               <h2 className="text-page_title">{page.name}</h2>
               <hr className="my-4" />
-              <div className="text-page_content" dangerouslySetInnerHTML={{ __html: `${page[`content_${lang}`]}` }} />
+              {
+                !!page[`content_${lang}`]
+                  ? <div className="text-page_content" dangerouslySetInnerHTML={{ __html: `${page[`content_${lang}`]}` }} />
+                  : <div className="text-page_content">Content in your chosen language is temporarily unavailable</div>
+              }
             </>
           )
       }
