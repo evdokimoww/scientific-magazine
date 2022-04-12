@@ -89,11 +89,16 @@ const Header = () => {
         <Navbar.Toggle aria-controls="nav" className="bg-white" />
         <Navbar.Collapse id="nav" className="mt-4">
           <div className="header_right d-flex flex-column w-100">
-            <ButtonGroup size="sm" className="header_language-switcher mb-2 w-25" aria-label="Language Switcher">
-              <StyledLanguageButton className={lang === 'rus' ? 'active' : ''} onClick={setRu}>Рус</StyledLanguageButton>
-              <StyledLanguageButton className={lang === 'en' ? 'active' : ''} onClick={setEn}>Eng</StyledLanguageButton>
-            </ButtonGroup>
-            <Form className="header_search-form d-flex" onSubmit={formik.handleSubmit}>
+            {
+              domain !== 'Ipp'
+                && (
+                <ButtonGroup size="sm" className="header_language-switcher mb-2 w-25" aria-label="Language Switcher">
+                  <StyledLanguageButton className={lang === 'rus' ? 'active' : ''} onClick={setRu}>Рус</StyledLanguageButton>
+                  <StyledLanguageButton className={lang === 'en' ? 'active' : ''} onClick={setEn}>Eng</StyledLanguageButton>
+                </ButtonGroup>
+                )
+            }
+            <Form className="header_search-form d-flex" onSubmit={formik.handleSubmitx}>
               <Form.Control
                 type="search"
                 name="search"

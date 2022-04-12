@@ -31,7 +31,7 @@ const Article = ({ article }) => {
       }
       {
         !!article[`body_${lang}`]
-          ? <p className="article_body">{article[`body_${lang}`]}</p>
+          ? <p className="article_body" dangerouslySetInnerHTML={{ __html: `${article[`body_${lang}`]}` }} />
           : <p className="article_body">Unfortunately, the body of this article has not been translated.</p>
       }
       <ButtonGroup className="article_buttons">
