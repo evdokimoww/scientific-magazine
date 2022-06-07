@@ -24,12 +24,12 @@ const Footer = () => {
           <span className="mb-1">
             Количество выпусков:
             {' '}
-            <b>{allArticles}</b>
+            <b>{allNumbers}</b>
           </span>
           <span className="mb-1">
             Общее количество статей:
             {' '}
-            <b>{allNumbers}</b>
+            <b>{allArticles}</b>
           </span>
           <span className="mb-1">
             Среднее количество статей в выпуске:

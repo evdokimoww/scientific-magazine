@@ -14,7 +14,7 @@ const Article = ({ article }) => {
     <div className="article mb-4">
       <h5 className="article_title" dangerouslySetInnerHTML={{ __html: `${article.header_en}` }} />
       <p className="article_body" dangerouslySetInnerHTML={{ __html: `${article.annotation}` }} />
-      <p className="article_body">{article.body_en}</p>
+      <p className="article_body" dangerouslySetInnerHTML={{ __html: `${article.body_en}` }} />
       <hr className="my-4" />
     </div>
   );
