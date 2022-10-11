@@ -90,7 +90,7 @@ const Header = () => {
         <Navbar.Collapse id="nav" className="mt-4">
           <div className="header_right d-flex flex-column w-100">
             {
-              domain !== 'Ipp'
+              domain !== 'Ipp' && domain !== 'ScientificNotes'
                 && (
                 <ButtonGroup size="sm" className="header_language-switcher mb-2 w-25" aria-label="Language Switcher">
                   <StyledLanguageButton className={lang === 'rus' ? 'active' : ''} onClick={setRu}>Рус</StyledLanguageButton>
@@ -98,7 +98,7 @@ const Header = () => {
                 </ButtonGroup>
                 )
             }
-            <Form className="header_search-form d-flex" onSubmit={formik.handleSubmitx}>
+            <Form className="header_search-form d-flex" onSubmit={formik.handleSubmit}>
               <Form.Control
                 type="search"
                 name="search"
