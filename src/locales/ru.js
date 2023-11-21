@@ -26,6 +26,10 @@ export default {
           title: 'AUDITORIUM',
           subtitle: 'Электронный научный журнал. ISSN 2312-4180',
         },
+        Ignis: {
+          title: 'Ignis Iuvenum',
+          subtitle: 'Электронный научный журнал',
+        },
       },
     },
   },
