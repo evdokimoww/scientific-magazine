@@ -11,6 +11,7 @@ const DomainProvider = ({ children }) => {
     [process.env.REACT_APP_DOMAIN_IPP]: 'Ipp',
     [process.env.REACT_APP_DOMAIN_TLIC]: 'TlIc',
     [process.env.REACT_APP_DOMAIN_AUDITORIUM]: 'Auditorium',
+    [process.env.REACT_APP_DOMAIN_IGNIS]: 'Ignis',
   };
 
   const value = {

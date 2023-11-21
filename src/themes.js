@@ -101,6 +101,24 @@ const themes = {
     searchButtonColorHover: '24, 84, 130',
     searchButtonBgHover: 'white',
   },
+  Ignis: {
+    primaryColor: '24, 84, 130',
+    headerBg: `
+      background: rgba(36,119,187,1);
+      background: -moz-linear-gradient(left, rgba(36,119,187,1) 0%, rgba(49,169,221,1) 50%, rgba(36,119,187,1) 100%);
+      background: -webkit-gradient(left top, right top, color-stop(0%, rgba(36,119,187,1)), color-stop(50%, rgba(49,169,221,1)), color-stop(100%, rgba(36,119,187,1)));
+      background: -webkit-linear-gradient(left, rgba(36,119,187,1) 0%, rgba(49,169,221,1) 50%, rgba(36,119,187,1) 100%);
+      background: -o-linear-gradient(left, rgba(36,119,187,1) 0%, rgba(49,169,221,1) 50%, rgba(36,119,187,1) 100%);
+      background: -ms-linear-gradient(left, rgba(36,119,187,1) 0%, rgba(49,169,221,1) 50%, rgba(36,119,187,1) 100%);
+      background: linear-gradient(to right, rgba(36,119,187,1) 0%, rgba(49,169,221,1) 50%, rgba(36,119,187,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2477bb', endColorstr='#2477bb', GradientType=1 );
+    `,
+    headerTitleColor: 'white',
+    headerSubtitleColor: 'white',
+    searchButtonColor: 'white',
+    searchButtonColorHover: '122, 70, 20',
+    searchButtonBgHover: 'white',
+  },
 };
 
 export default (domain) => themes[domain];
